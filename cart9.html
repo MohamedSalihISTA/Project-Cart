@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cart9</title>
+    <style>
+      body {
+        margin: 0; 
+      }
+
+      .menuHead > ul {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+      }
+      .menuHead > ul > li {
+          padding: 10px;
+      }
+      .menuHead {
+          background-color: black;
+
+      }
+      .menuHead > ul > li > img {
+          max-width: 45px;
+          height:45px;
+          border-radius: 50%;
+          margin-right: 50px;
+      }
+      li {
+          list-style: none;
+      }
+      .bag {
+        border: solid black;
+         margin: 0 auto;
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         padding: 15px;
+         display: block;
+         flex: 1;
+         height: auto;
+        }
+    .bag > .item >  img {
+        width: 1.3cm;
+        height: auto;
+        float: left;
+        
+    }
+     .item {
+        display: flex;
+        flex: 1;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5cm;
+
+    }
+    .info { display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        
+    }
+    .Nachat > img{
+        width: 0.8cm;
+    }
+    .Nachat > p{
+        margin-left: 0.3cm;
+    }
+    input {
+        border-style: none;
+    }
+    #total {
+        border-top: solid black;
+    }
+    img:hover {cursor: pointer;}
+    </style>
+</head>
+<body>
+    <nav class="menuHead">
+        <ul>
+            <li><img src="eshoplogo.jfif" alt="test"></li>
+            <li><img src="shoppinglogo.png" alt="test"></li>
+        </ul>
+    </nav>
+    <div class="bag">
+        <p><strong>Your Bag</strong></p>
+        <div class="item">
+        <img src="phone.jfif" alt="test">
+        <div class="info">
+         <p>Iphone Pro</p> 
+             <div>
+                <label for="prix">$</label>
+                <input type="number" name="prix" id="prix" value="4500">
+             </div>
+             <button>remove</button>
+        </div>
+        <div class="Nachat">
+            <img class="up" src="arrow-up.png" alt="test">
+            <p class="v">3</p>
+            <img class="down" src="arrow-down.png" alt="test">
+        </div>
+        </div>
+        <div class="item">
+            <img src="phone.jfif" alt="test">
+            <div class="info">
+             <p>Sumsung Galaxy</p> 
+                 <div>
+                    <label for="prix">$</label>
+                    <input type="number" name="prix" id="prix" value="4500">
+                 </div>
+                 <button>remove</button>
+            </div>
+            <div class="Nachat">
+                <img class="up" src="arrow-up.png" alt="test">
+                <p class="v">3</p>
+                <img class="down" src="arrow-down.png" alt="test">
+            </div>
+            
+        </div>
+        <div class="item">
+            <img src="phone.jfif" alt="test">
+            <div class="info">
+             <p>Iphone Pro</p> 
+                 <div>
+                    <label for="prix">$</label>
+                    <input type="number" name="prix" id="prix" value="4500">
+                </div>
+                <button>remove</button> 
+            </div>
+            <div class="Nachat">
+                    <img class="up" src="arrow-up.png" alt="test">
+                    <p class="v">3</p>
+                    <img class="down" src="arrow-down.png" alt="test">
+            </div>
+            </div>
+                
+       
+       
+
+            <p id="totalPrice"><strong>Total : $0</strong></p>
+            <button id="clear">clear Cart</button>
+    </div>
+    <script>
+        // Get all the necessary elements
+const items = document.querySelectorAll('.item');
+const totalPrice = document.getElementById('totalPrice');
+
+// Add event listeners to each item
+items.forEach(item => {
+  const up = item.querySelector('.up');
+  const down = item.querySelector('.down');
+  const quantity = item.querySelector('.v');
+  const price = item.querySelector('#prix');
+
+  // Increase quantity when up button is clicked
+  up.addEventListener('click', () => {
+    quantity.textContent = parseInt(quantity.textContent) + 1;
+    updateTotalPrice();
+  });
+
+  // Decrease quantity when down button is clicked
+  down.addEventListener('click', () => {
+    if (parseInt(quantity.textContent) > 1) {
+      quantity.textContent = parseInt(quantity.textContent) - 1;
+      updateTotalPrice();
+    }
+  });
+});
+
+// Update the total price
+function updateTotalPrice() {
+  let total = 0;
+  items.forEach(item => {
+    const price = item.querySelector('#prix');
+    const quantity = item.querySelector('.v');
+    total += parseInt(price.value) * parseInt(quantity.textContent);
+  });
+  totalPrice.textContent = `Total : $${total.toFixed(2)}`;
+}
+    </script>
+  
+    
+</body>
+</html>
